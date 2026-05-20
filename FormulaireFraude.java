@@ -1,5 +1,9 @@
+import etude.Epreuve;
+import etude.Etudiant;
 import fraude.Fraude;
+
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 class FormulaireFraude {
@@ -10,30 +14,58 @@ class FormulaireFraude {
     private List<Etudiant> etudiants;
     private List<Fraude> fraudes;
 
-    void ajouterEtudiant(Etudiant etudiant){
-        etudiants.add(etudiant);
+    public FormulaireFraude() {
+        etudiants = new ArrayList<>();
+        fraudes = new ArrayList<>();
+        dateCreation = LocalDateTime.now();
+        dateDerniereModification = dateCreation;
     }
-    void ajouterFraude(Fraude fraude){
-        fraudes.add(fraude);
+
+    public FormulaireFraude(List<Fraude> fraudes) {
+        etudiants = new ArrayList<>();
+        this.fraudes = new ArrayList<>();
+        fraudes.forEach(this::ajouterFraudeConstatee);
+
+        dateCreation = LocalDateTime.now();
+        dateDerniereModification = dateCreation;
+
+    }
+
+
+
+    public void retirerFraudeConstatee(Fraude fraude){
+        fraudes.remove(fraude);
+
+        List<Etudiant> aSupprimer = new ArrayList<>(etudiants);
+
+        fraudes.forEach(fraudeRestante ->
+                aSupprimer.removeAll(fraudeRestante.getEtudiants())
+        );
+
+        etudiants.removeAll(aSupprimer);
         dateDerniereModification = LocalDateTime.now();
     }
 
 
+    public void ajouterFraudeConstatee(Fraude fraude){
+        fraudes.add(fraude);
+        fraude.getEtudiants().stream()
+                .filter(etudiant -> !this.etudiants.contains(etudiant))
+                .forEach(etudiant -> etudiants.add(etudiant));
+
+        dateDerniereModification = LocalDateTime.now();
+    }
+
+
+    //GETTERS & SETTERS
 
     public List<Fraude> getFraudes() {
-        return fraudes;
+        return List.copyOf(fraudes);
     }
 
-    public void setFraudes(List<Fraude> fraudes) {
-        this.fraudes = fraudes;
-    }
 
     public List<Etudiant> getEtudiants() {
-        return etudiants;
-    }
-
-    public void setEtudiants(List<Etudiant> etudiants) {
-        this.etudiants = etudiants;
+        return List.copyOf(etudiants);
     }
 
     public Epreuve getEpreuve() {
@@ -41,6 +73,7 @@ class FormulaireFraude {
     }
 
     public void setEpreuve(Epreuve epreuve) {
+        dateDerniereModification = LocalDateTime.now();
         this.epreuve = epreuve;
     }
 
@@ -57,6 +90,7 @@ class FormulaireFraude {
     }
 
     public void setDateCreation(LocalDateTime dateCreation) {
+        dateDerniereModification = LocalDateTime.now();
         this.dateCreation = dateCreation;
     }
 
@@ -65,6 +99,7 @@ class FormulaireFraude {
     }
 
     public void setId(int id) {
+        dateDerniereModification = LocalDateTime.now();
         this.id = id;
     }
 }

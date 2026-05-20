@@ -2,7 +2,7 @@ package fraude;
 
 import java.awt.*;
 
-public class FraudePapier extends Fraude{
+public class FraudePapier extends Fraude {
     private Point dimension;
     private boolean plie;
 

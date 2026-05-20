@@ -1,3 +1,5 @@
+package etude;
+
 enum Modalite {
     EXAMEN_ECRIT,
     ORAL,

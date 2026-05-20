@@ -1,7 +1,9 @@
+package etude;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-class Epreuve {
+public class Epreuve {
     String codeECUE;
     LocalDate date;
     LocalTime heure;

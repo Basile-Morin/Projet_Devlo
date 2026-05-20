@@ -1,8 +1,14 @@
+package etude;
+
 public class Etudiant {
     String numeroApprenant;
     String nom;
     String prenom;
     Cursus cursus;
+
+    public Etudiant(){
+
+    }
 
     public String getNumeroApprenant() {
         return numeroApprenant;

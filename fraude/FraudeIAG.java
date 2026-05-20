@@ -1,6 +1,6 @@
 package fraude;
 
-public class FraudeIAG extends Fraude{
+public class FraudeIAG extends Fraude {
     private String nomService;
 
     public FraudeIAG(){

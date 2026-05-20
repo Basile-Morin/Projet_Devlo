@@ -50,6 +50,7 @@ abstract class Fraude {
   - dateReleve : LocalDate
   - description : String
   - contenu : String
+  - etudiants : ArrayList<Etudiant>
 }
 
 class FraudeIAG {

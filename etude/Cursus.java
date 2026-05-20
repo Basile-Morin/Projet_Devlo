@@ -1,3 +1,5 @@
+package etude;
+
 public enum Cursus {
     E1,
     E2,

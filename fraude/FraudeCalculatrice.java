@@ -1,6 +1,6 @@
 package fraude;
 
-public class FraudeCalculatrice extends Fraude{
+public class FraudeCalculatrice extends Fraude {
     private String marque;
     private String programmeStocke;
 
